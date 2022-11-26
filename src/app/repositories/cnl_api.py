@@ -91,3 +91,61 @@ class CloudNaturalLanguageAPIRepositories:
         #     )
 
         return sentiment_result
+
+    @staticmethod
+    def get_sentiment_entities(text):
+
+        # Init client for Cloud Natural language
+        client = language_v1.LanguageServiceClient()
+
+        # Available types: PLAIN_TEXT, HTML
+        type_ = language_v1.Document.Type.PLAIN_TEXT
+
+        # Optional. If not specified, the language is automatically detected.
+        # For list of supported languages:
+        # https://cloud.google.com/natural-language/docs/languages
+        # language = "en"
+        document = {"content": text, "type_": type_}
+
+        # Available values: NONE, UTF8, UTF16, UTF32
+        encoding_type = language_v1.EncodingType.UTF8
+
+        response = client.analyze_entity_sentiment(request = {'document': document, 'encoding_type': encoding_type})
+
+        # Get the language detected by CNL API
+        language_detected = response.language
+
+        list_of_entites_sentiment = []
+
+        
+        # Loop through entitites returned from the API
+        for entity in response.entities:
+            sentiment = entity.sentiment
+            
+            sentiment_dict = {
+                "sentiment_score":sentiment.score,
+                "sentiment_magnitude":sentiment.magnitude,
+            }
+
+            wikipedia_url = ""
+
+            for metadata_name, metadata_value in entity.metadata.items():
+                if "wikipedia" in metadata_name.lower():
+                    wikipedia_url = metadata_value
+ 
+
+            entity_dict = {
+                "name": entity.name,
+                "type": language_v1.Entity.Type(entity.type_).name,
+                "score": entity.salience,
+                "wikipedia_url": wikipedia_url,
+            }
+
+            entity_sentiment_dict = entity_dict | sentiment_dict
+            
+
+            list_of_entites_sentiment.append(entity_sentiment_dict)
+   
+
+        return list_of_entites_sentiment
+    

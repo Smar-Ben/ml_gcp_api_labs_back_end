@@ -16,5 +16,12 @@ class CloudNaturalLanguageAPIService:
         """ "
         fetch inference object detected for each image
         """
-
         return CloudNaturalLanguageAPIRepositories.get_sentiment(text)
+
+
+    @staticmethod
+    def entity_sentiment(text: str):
+        """ "
+        fetch inference object detected for each image
+        """
+        return CloudNaturalLanguageAPIRepositories.get_sentiment_entities(text)
