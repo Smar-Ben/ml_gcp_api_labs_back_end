@@ -1,4 +1,3 @@
-from fastapi.encoders import jsonable_encoder
 from google.cloud import language_v1
 
 # from models.inferences import Inferences
@@ -40,9 +39,10 @@ class CloudNaturalLanguageAPIRepositories:
             entity_dict = {
                 "name": entity.name,
                 "type": language_v1.Entity.Type(entity.type_).name,
-                "score": entity.salience,
-                "wikipedia_url": wikipedia_url,
+                "score": float(entity.salience),
                 "language": language_detected,
+                "wikipedia_url": wikipedia_url,
+
             }
             list_of_entites.append(entity_dict)
         return list_of_entites
@@ -108,6 +108,6 @@ class CloudNaturalLanguageAPIRepositories:
                 break
             else:
                 #get all api result
-                category_dict = {"name":category.name,"confidence":category.confidence}
+                category_dict = {"name":category.name,"confidence":float(category.confidence)}
                 all_category.append(category_dict)
         return all_category

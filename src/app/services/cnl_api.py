@@ -1,4 +1,3 @@
-from models.cnl_api import Inferences
 from repositories.cnl_api import CloudNaturalLanguageAPIRepositories
 
 
