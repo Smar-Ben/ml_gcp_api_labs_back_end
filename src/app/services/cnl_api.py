@@ -5,23 +5,25 @@ from repositories.cnl_api import CloudNaturalLanguageAPIRepositories
 class CloudNaturalLanguageAPIService:
     @staticmethod
     def entity(text: str):
-        """ "
-        save object detected for each inference
-        :param inference_results: api input.
+        """ 
+        does an entity analysis with cloud natural language
+        :param text: text to analyse.
         """
         return CloudNaturalLanguageAPIRepositories.get_entities(text)
 
     @staticmethod
     def sentiment(text: str):
-        """ "
-        fetch inference object detected for each image
+        """ 
+        does an sentiment analysis with cloud natural language
+        :param text: text to analyse.
         """
         return CloudNaturalLanguageAPIRepositories.get_sentiment(text)
 
 
     @staticmethod
     def classify(text: str):
-        """ "
-        fetch inference object detected for each image
+        """ 
+        does an analysis with cloud natural language to get the content category
+        :param text: text to analyse.
         """
         return CloudNaturalLanguageAPIRepositories.get_classification(text)

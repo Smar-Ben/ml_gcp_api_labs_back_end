@@ -15,8 +15,9 @@ router = APIRouter(
     response_description="Fetch Cloud Natural Language API and return the results",
 )
 async def get_result_cnl_entity(text: str | None = Query(default=None, max_length=1000)):
-    """ "
-    get inference object for image name
+    """ 
+    get the entity analysis of a text
+    :param text: text to analyze
     """
     try:
         return CloudNaturalLanguageAPIService.entity(text)
@@ -30,9 +31,9 @@ async def get_result_cnl_entity(text: str | None = Query(default=None, max_lengt
     response_description="Fetch Cloud Natural Language API and return the results",
 )
 async def get_result_cnl_entity(text: str | None = Query(default=None, max_length=1000) ):
-    """ "
-    save object detected for each inference
-    :param inference_results: api input.
+    """ 
+    get the sentiment analysis of a text
+    :param text: text to analyze
     """
     try:
         return CloudNaturalLanguageAPIService.sentiment(text)
@@ -48,8 +49,8 @@ async def get_result_cnl_entity(text: str | None = Query(default=None, max_lengt
 )
 async def get_result_classify_content(text: str | None = Query(default=None, max_length=1000)):
     """ "
-    save object detected for each inference
-    :param inference_results: api input.
+    get content category analysis 
+    :param text: text to analyze
     """
     try:
         return CloudNaturalLanguageAPIService.classify(text)

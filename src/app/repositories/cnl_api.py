@@ -7,8 +7,12 @@ from google.cloud import language_v1
 
 class CloudNaturalLanguageAPIRepositories:
     @staticmethod
-    def get_entities(text):
-
+    def get_entities(text : str):
+        """
+        get_entities does an entities analysis with cloud natural language
+        :param text: text to analyse
+        :return: get the result of the entities analysis (with name, category, confidence..)
+        """
         # Init client for Cloud Natural language
         client = language_v1.LanguageServiceClient()
         # Available types: PLAIN_TEXT, HTML
@@ -41,12 +45,15 @@ class CloudNaturalLanguageAPIRepositories:
                 "language": language_detected,
             }
             list_of_entites.append(entity_dict)
-        
         return list_of_entites
 
     @staticmethod
     def get_sentiment(text):
-
+        """
+        get_sentiment does an sentiment analysis with cloud natural language
+        :param text: text to analyse
+        :return: get the result of the sentiment analysis (with name, score, magnitude..)
+        """
         # Init client for Cloud Natural language
         client = language_v1.LanguageServiceClient()
         # Available types: PLAIN_TEXT, HTML
@@ -67,19 +74,16 @@ class CloudNaturalLanguageAPIRepositories:
             "magnitude": float(response.document_sentiment.magnitude),
             "language": response.language,
         }
-        # TODO: add all sentence score
-        # for sentence in response.sentences:
-        #     print("Sentence text: {}".format(sentence.text.content))
-        #     print("Sentence sentiment score: {}".format(sentence.sentiment.score))
-        #     print(
-        #         "Sentence sentiment magnitude: {}".format(sentence.sentiment.magnitude)
-        #     )
         return sentiment_result
 
 
     @staticmethod
     def get_classification(text):
-
+        """
+        get_classification give the three possible content category of a text
+        :param text: text to analyse
+        :return: get the three most possible content category for a text
+        """
         client = language_v1.LanguageServiceClient()
         # Available types: PLAIN_TEXT, HTML
         type_ = language_v1.Document.Type.PLAIN_TEXT
