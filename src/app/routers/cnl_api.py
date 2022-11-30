@@ -42,16 +42,16 @@ async def get_result_cnl_entity(text: str | None = Query(default=None, max_lengt
 
 
 @router.get(
-    "/sentiment_entities",
+    "/classify",
     status_code=status.HTTP_200_OK,
     response_description="Fetch Cloud Natural Language API and return the results",
 )
-async def get_result_cnl_entity(text: str | None = Query(default=None, max_length=1000)):
+async def get_result_classify_content(text: str | None = Query(default=None, max_length=1000)):
     """ "
     save object detected for each inference
     :param inference_results: api input.
     """
     try:
-        return CloudNaturalLanguageAPIService.entity_sentiment(text)
+        return CloudNaturalLanguageAPIService.classify(text)
     except InvalidArgument as e:
         raise HTTPException(status_code=400, detail=str(e)[4:])
