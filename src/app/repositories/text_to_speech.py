@@ -10,9 +10,9 @@ class TextToSpeechAPIRepositories:
     @staticmethod
     def convert_speech_to_text(text: str):
         """
-        get_entities does an entities analysis with cloud natural language
-        :param text: text to analyse
-        :return: get the result of the entities analysis (with name, category, confidence..)
+        convert_speech_to_text transform a text into a audio 
+        :param text: text to transform
+        :return: return the audio file of the text
         """
         client = texttospeech.TextToSpeechClient()
         synthesis_input = texttospeech.SynthesisInput(text=text)

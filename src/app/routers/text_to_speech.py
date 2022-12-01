@@ -14,18 +14,13 @@ router = APIRouter(
     "/text_to_speech",
     status_code=status.HTTP_200_OK,
     response_class=FileResponse,
-    response_description="Fetch Cloud Natural Language API and return the results",
+    response_description="Fetch Cloud text_to_speech API to transform a text into speech",
 )
 async def get_speech_to_text(
     text: str | None = Query(default=None, max_length=255)
 ):
     """
-    get the entity analysis of a text
+    transform a speech into a text with text_to_speech api
     :param text: text to analyze
     """
     return TextToSpeechAPIService.convert_speech_to_text(text)
-    # try:
-    #     return CloudNaturalLanguageAPIService.entity(text)
-    # except InvalidArgument as e:
-    #     raise HTTPException(status_code=400, detail=str(e)[4:])
-

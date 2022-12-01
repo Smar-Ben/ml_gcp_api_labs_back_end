@@ -5,7 +5,7 @@ class TextToSpeechAPIService:
     @staticmethod
     def convert_speech_to_text(text: str):
         """
-        does an entity analysis with cloud natural language
-        :param text: text to analyse.
+        transform a text into a speec
+        :param text: text to transform.
         """
         return TextToSpeechAPIRepositories.convert_speech_to_text(text)
