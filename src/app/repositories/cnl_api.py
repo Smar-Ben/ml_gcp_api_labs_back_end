@@ -6,7 +6,7 @@ from google.cloud import language_v1
 
 class CloudNaturalLanguageAPIRepositories:
     @staticmethod
-    def get_entities(text : str):
+    def get_entities(text: str):
         """
         get_entities does an entities analysis with cloud natural language
         :param text: text to analyse
@@ -42,7 +42,6 @@ class CloudNaturalLanguageAPIRepositories:
                 "score": float(entity.salience),
                 "language": language_detected,
                 "wikipedia_url": wikipedia_url,
-
             }
             list_of_entites.append(entity_dict)
         return list_of_entites
@@ -76,7 +75,6 @@ class CloudNaturalLanguageAPIRepositories:
         }
         return sentiment_result
 
-
     @staticmethod
     def get_classification(text):
         """
@@ -92,22 +90,28 @@ class CloudNaturalLanguageAPIRepositories:
         # https://cloud.google.com/natural-language/docs/languages
         document = {"content": text, "type_": type_}
         content_categories_version = (
-            language_v1.ClassificationModelOptions.V2Model.ContentCategoriesVersion.V2)
-        response = client.classify_text(request = {
-            "document": document,
-            "classification_model_options": {
-                "v2_model": {
-                    "content_categories_version": content_categories_version
-                }
+            language_v1.ClassificationModelOptions.V2Model.ContentCategoriesVersion.V2
+        )
+        response = client.classify_text(
+            request={
+                "document": document,
+                "classification_model_options": {
+                    "v2_model": {
+                        "content_categories_version": content_categories_version
+                    }
+                },
             }
-        })
+        )
         all_category = []
-        # Get the first three category of the text return by the cloud natural language 
+        # Get the first three category of the text return by the cloud natural language
         for idx, category in enumerate(response.categories):
-            if idx>=3:
+            if idx >= 3:
                 break
             else:
-                #get all api result
-                category_dict = {"name":category.name,"confidence":float(category.confidence)}
+                # get all api result
+                category_dict = {
+                    "name": category.name,
+                    "confidence": float(category.confidence),
+                }
                 all_category.append(category_dict)
         return all_category

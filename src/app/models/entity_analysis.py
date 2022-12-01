@@ -1,5 +1,6 @@
 from pydantic.dataclasses import dataclass
 from typing import Optional
+
 # from typing import List
 # from datetime import datetime
 
@@ -10,4 +11,4 @@ class EntityAnalysis:
     type: str
     score: float
     language: str
-    wikipedia_url:Optional[str]=None 
+    wikipedia_url: Optional[str] = None

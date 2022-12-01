@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status,HTTPException, Query
+from fastapi import APIRouter, status, HTTPException, Query
 from services.cnl_api import CloudNaturalLanguageAPIService
 from google.api_core.exceptions import InvalidArgument
 from typing import List
@@ -19,8 +19,10 @@ router = APIRouter(
     response_model=List[EntityAnalysis],
     response_description="Fetch Cloud Natural Language API and return the results",
 )
-async def get_result_cnl_entity(text: str | None = Query(default=None, max_length=1000)):
-    """ 
+async def get_result_cnl_entity(
+    text: str | None = Query(default=None, max_length=1000)
+):
+    """
     get the entity analysis of a text
     :param text: text to analyze
     """
@@ -36,8 +38,10 @@ async def get_result_cnl_entity(text: str | None = Query(default=None, max_lengt
     # response_model=SentimentAnalysis,
     response_description="Fetch Cloud Natural Language API and return the results",
 )
-async def get_result_cnl_entity(text: str | None = Query(default=None, max_length=1000) ):
-    """ 
+async def get_result_cnl_entity(
+    text: str | None = Query(default=None, max_length=1000)
+):
+    """
     get the sentiment analysis of a text
     :param text: text to analyze
     """
@@ -47,16 +51,17 @@ async def get_result_cnl_entity(text: str | None = Query(default=None, max_lengt
         raise HTTPException(status_code=400, detail=str(e)[4:])
 
 
-
 @router.get(
     "/classify",
     status_code=status.HTTP_200_OK,
     response_model=List[ClassifyAnalysis],
     response_description="Fetch Cloud Natural Language API and return the results",
 )
-async def get_result_classify_content(text: str | None = Query(default=None, max_length=1000)):
+async def get_result_classify_content(
+    text: str | None = Query(default=None, max_length=1000)
+):
     """ "
-    get content category analysis 
+    get content category analysis
     :param text: text to analyze
     """
     try:
