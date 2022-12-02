@@ -10,7 +10,7 @@ class TextToSpeechAPIRepositories:
     @staticmethod
     def convert_speech_to_text(text: str):
         """
-        convert_speech_to_text transform a text into a audio 
+        convert_speech_to_text transform a text into a audio
         :param text: text to transform
         :return: return the audio file of the text
         """
@@ -29,7 +29,7 @@ class TextToSpeechAPIRepositories:
         response = client.synthesize_speech(
             input=synthesis_input, voice=voice, audio_config=audio_config
         )
-        today_str = datetime.today().strftime('%Y%m%d%H%M%S')
+        today_str = datetime.today().strftime("%Y%m%d%H%M%S")
 
         # # The response's audio_content is binary.
         with open(f"src/file/output{today_str}.mp3", "wb") as out:
@@ -37,4 +37,3 @@ class TextToSpeechAPIRepositories:
             out.write(response.audio_content)
             print('Audio content written to file "output.mp3"')
         return FileResponse(f"src/file/output{today_str}.mp3")
-   

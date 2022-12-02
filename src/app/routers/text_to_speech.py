@@ -16,9 +16,7 @@ router = APIRouter(
     response_class=FileResponse,
     response_description="Fetch Cloud text_to_speech API to transform a text into speech",
 )
-async def get_speech_to_text(
-    text: str | None = Query(default=None, max_length=255)
-):
+async def get_speech_to_text(text: str = Query(default=None, max_length=255)):
     """
     transform a speech into a text with text_to_speech api
     :param text: text to analyze

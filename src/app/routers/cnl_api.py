@@ -20,7 +20,7 @@ router = APIRouter(
     response_description="Fetch Cloud Natural Language API and return the results",
 )
 async def get_result_cnl_entity(
-    text: str | None = Query(default=None, max_length=1000)
+    text: str | None = Query(max_length=1000)
 ):
     """
     get the entity analysis of a text
@@ -38,9 +38,7 @@ async def get_result_cnl_entity(
     # response_model=SentimentAnalysis,
     response_description="Fetch Cloud Natural Language API and return the results",
 )
-async def get_result_cnl_entity(
-    text: str | None = Query(default=None, max_length=1000)
-):
+async def get_result_cnl_entity(text: str = Query(max_length=1000)):
     """
     get the sentiment analysis of a text
     :param text: text to analyze
@@ -57,9 +55,7 @@ async def get_result_cnl_entity(
     response_model=List[ClassifyAnalysis],
     response_description="Fetch Cloud Natural Language API and return the results",
 )
-async def get_result_classify_content(
-    text: str | None = Query(default=None, max_length=1000)
-):
+async def get_result_classify_content(text: str = Query(max_length=1000)):
     """ "
     get content category analysis
     :param text: text to analyze
