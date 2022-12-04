@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routers import cnl_api, text_to_speech, cloud_translate
+from fastapi.middleware.cors import CORSMiddleware
 
 # from routers import (
 # ,
@@ -7,13 +8,14 @@ from routers import cnl_api, text_to_speech, cloud_translate
 
 
 app = FastAPI()
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+# Add CORS Middleware, so the backend can communicate with multiple origin
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # app.include_router(object_detected.router)
 # app.include_router(inferences.router)
 # app.include_router(scenario.router)
