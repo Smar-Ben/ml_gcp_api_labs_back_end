@@ -19,9 +19,7 @@ router = APIRouter(
     response_model=List[EntityAnalysis],
     response_description="Fetch Cloud Natural Language API and return the results",
 )
-async def get_result_cnl_entity(
-    text: str | None = Query(max_length=1000)
-):
+async def get_result_cnl_entity(text: str | None = Query(max_length=1000)):
     """
     get the entity analysis of a text
     :param text: text to analyze
@@ -35,7 +33,7 @@ async def get_result_cnl_entity(
 @router.get(
     "/sentiment",
     status_code=status.HTTP_200_OK,
-    # response_model=SentimentAnalysis,
+    response_model=SentimentAnalysis,
     response_description="Fetch Cloud Natural Language API and return the results",
 )
 async def get_result_cnl_entity(text: str = Query(max_length=1000)):

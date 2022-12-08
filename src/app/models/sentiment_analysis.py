@@ -7,7 +7,7 @@ from typing import Optional
 
 @dataclass
 class SentimentAnalysis:
-    name: str
+    text: str
     score: float
     magnitude: float
     language: str
